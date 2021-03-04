@@ -28,14 +28,14 @@ public class ApplicationConfig implements WebMvcConfigurer {
     public FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
         configurer.setDefaultEncoding("UTF-8");
-        configurer.setTemplateLoaderPath("classpath:/res/ftl/");
+        configurer.setTemplateLoaderPath("classpath:/templates/ftl/");
         return configurer;
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/static/**").addResourceLocations("res/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/res/");
     }
 
 }
