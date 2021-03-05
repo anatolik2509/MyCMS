@@ -41,7 +41,8 @@ public class DatabaseConfig {
     public HikariConfig hikariConfig() {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(environment.getProperty("db.url"));
-        hikariConfig.setMaximumPoolSize(Integer.parseInt(Objects.requireNonNull(environment.getProperty("db.hikari.max-pool-size"))));
+        System.out.println(environment.getProperty("db.url"));
+        hikariConfig.setMaximumPoolSize(Integer.parseInt(environment.getProperty("db.hikari.max-pool-size")));
         hikariConfig.setUsername(environment.getProperty("db.username"));
         hikariConfig.setPassword(environment.getProperty("db.password"));
         hikariConfig.setDriverClassName(environment.getProperty("db.driver.classname"));

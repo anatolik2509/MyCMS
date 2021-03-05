@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,4 +20,9 @@ public class Page {
     @Column(unique = true)
     private String path;
     private String content;
+    @ManyToOne
+    private Page parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Page> children;
 }

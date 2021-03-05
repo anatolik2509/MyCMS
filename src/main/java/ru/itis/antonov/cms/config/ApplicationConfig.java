@@ -1,9 +1,6 @@
 package ru.itis.antonov.cms.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,6 +9,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @Configuration
 @EnableWebMvc
+@PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = {"ru.itis.antonov.cms"}, excludeFilters={
         @ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value=ApplicationConfig.class)})
 public class ApplicationConfig implements WebMvcConfigurer {
@@ -28,14 +26,14 @@ public class ApplicationConfig implements WebMvcConfigurer {
     public FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
         configurer.setDefaultEncoding("UTF-8");
-        configurer.setTemplateLoaderPath("classpath:/templates/ftl/");
+        configurer.setTemplateLoaderPath("classpath:/res/ftl/");
         return configurer;
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/res/");
+        registry.addResourceHandler("/res/**").addResourceLocations("classpath:/static/");
     }
 
 }

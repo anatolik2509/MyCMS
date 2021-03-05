@@ -8,6 +8,10 @@
     <artifactId>MyCMS</artifactId>
     <version>1.0</version>
 
+    <packaging>war</packaging>
+    <properties>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
 
     <build>
         <plugins>
