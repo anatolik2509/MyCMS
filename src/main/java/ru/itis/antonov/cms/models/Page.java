@@ -16,9 +16,11 @@ import java.util.List;
 
 public class Page {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String path;
+    @Column(columnDefinition = "TEXT")
     private String content;
     @ManyToOne
     private Page parent;

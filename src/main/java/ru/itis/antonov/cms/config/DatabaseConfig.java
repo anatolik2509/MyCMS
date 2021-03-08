@@ -71,9 +71,9 @@ public class DatabaseConfig {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.hibernate.ddl-auto"));
+        properties.setProperty("hibernate.dialect", environment.getProperty("spring.jpa.dialect"));
+        properties.setProperty("hibernate.show_sql", environment.getProperty("spring.jpa.show-sql"));
         return properties;
     }
 }
