@@ -32,29 +32,19 @@ public class SiteNavigationController {
     }
 
     @GetMapping("/site/**")
-    public void getPage(Writer wr, HttpServletRequest request, HttpServletResponse response){
+    public String getPage(Model model, HttpServletRequest request, HttpServletResponse response){
         String path = request.getServletPath();
-        System.out.println(path);
-        System.out.println(request.getRequestURL());
-        System.out.println(request.getContextPath());
-        System.out.println(request.getServletPath());
         PageDto page = sitePagesService.getPage(path);
         if(page == null){
             try {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            } catch (IOException e) {
-                throw new IllegalArgumentException(e);
-            }
-            return;
-        }
-        try {
-            wr.write(page.getContent());
-        } catch (IOException ioException) {
-            try {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return "notFound";
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
             }
         }
+        model.addAttribute("content", page.getContent());
+        model.addAttribute("title", page.getTitle());
+        return "pageTemplate";
     }
 }

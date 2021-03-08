@@ -52,39 +52,21 @@ public class SitePagesServiceImpl implements SitePagesService {
     }
 
     @Override
-    public Page buildPage(String content, String title, String path, String locale, String parentId, String staticPath) {
-        Template pageTemplate;
-        try {
-            pageTemplate = configurer.getConfiguration().getTemplate("pageTemplate.ftlh");
-        } catch (IOException ioException) {
-            throw new IllegalArgumentException(ioException);
-        }
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put("staticPath", staticPath);
-        attributes.put("title", title);
-        attributes.put("content", content);
-        attributes.put("pages", pages());
-        StringWriter wr = new StringWriter();
-        try {
-            pageTemplate.process(attributes, wr);
-        } catch (TemplateException e) {
-            e.printStackTrace();
-        } catch (IOException ioException) {
-            throw new IllegalArgumentException(ioException);
-        }
-        String html = wr.getBuffer().toString();
+    public Page buildPage(String content, String title, String path, String locale, String parentId) {
         Long parent = Long.parseLong(parentId);
         if(parent == -1){
             return Page.builder()
-                    .content(html)
+                    .content(content)
                     .path("/site/" + locale + "/" + path)
                     .parent(null)
+                    .title(title)
                     .build();
         }
         return Page.builder()
-                .content(html)
+                .content(content)
                 .path("/" + locale + "/" + path)
                 .parent(Page.builder().id(parent).build())
+                .title(title)
                 .build();
     }
 }

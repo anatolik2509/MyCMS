@@ -39,7 +39,7 @@ public class EditorController {
                          @RequestParam String parentId,
                          HttpServletRequest request,
                          HttpServletResponse response){
-        sitePagesService.savePage(sitePagesService.buildPage(content, title, path, locale, parentId, request.getContextPath()));
+        sitePagesService.savePage(sitePagesService.buildPage(content, title, path, locale, parentId));
         response.setStatus(200);
     }
 }

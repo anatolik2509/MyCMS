@@ -24,6 +24,7 @@ public class Page {
     private String content;
     @ManyToOne
     private Page parent;
+    private String title;
 
     @OneToMany(mappedBy = "parent")
     private List<Page> children;

@@ -14,12 +14,13 @@ public class PageDto {
     private Long id;
     private String path;
     private String content;
+    private String title;
 
     public static PageDto from(Page page){
-        return PageDto.builder().content(page.getContent()).path(page.getPath()).id(page.getId()).build();
+        return PageDto.builder().content(page.getContent()).path(page.getPath()).id(page.getId()).title(page.getTitle()).build();
     }
 
     public static Page toModel(PageDto pageDto){
-        return Page.builder().content(pageDto.getContent()).path(pageDto.getPath()).id(pageDto.getId()).build();
+        return Page.builder().content(pageDto.getContent()).path(pageDto.getPath()).id(pageDto.getId()).title(pageDto.getTitle()).build();
     }
 }

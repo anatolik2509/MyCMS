@@ -12,5 +12,5 @@ public interface SitePagesService {
 
     List<PageDto> pages();
 
-    Page buildPage(String content, String title, String path, String locale, String parentId, String staticPath);
+    Page buildPage(String content, String title, String path, String locale, String parentId);
 }
