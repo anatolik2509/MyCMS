@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.awt.color.ICC_ProfileRGB;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -67,6 +70,11 @@ public class DatabaseConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
 
         return transactionManager;
+    }
+
+    @Bean
+    public Path mediaPath(){
+        return new File("C:/repository").toPath();
     }
 
     private Properties additionalProperties() {

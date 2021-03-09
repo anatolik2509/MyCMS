@@ -1,9 +1,14 @@
 let url;
+let context;
 
 document.addEventListener("DOMContentLoaded", function (){
     let editor;
     ClassicEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: context + '/media'
+            }
+        })
         .then( newEditor => editor = newEditor)
         .catch(error => {
             console.error(error);

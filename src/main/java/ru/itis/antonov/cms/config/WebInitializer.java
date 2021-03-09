@@ -9,12 +9,13 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 public class WebInitializer implements WebApplicationInitializer {
+
+    private final String TMP_FOLDER = "/tmp";
+    private final int MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
+
     @SneakyThrows
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext springWebContext = new AnnotationConfigWebApplicationContext();
@@ -36,5 +37,10 @@ public class WebInitializer implements WebApplicationInitializer {
         FilterRegistration.Dynamic filterRegistration = servletContext
                 .addFilter("characterEncodingFilter", characterEncodingFilter);
         filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+
+//        MultipartConfigElement multipartConfigElement = new MultipartConfigElement(TMP_FOLDER,
+//                MAX_UPLOAD_SIZE, MAX_UPLOAD_SIZE * 2, MAX_UPLOAD_SIZE / 2);
+//
+//        dispatcherServlet.setMultipartConfig(multipartConfigElement);
     }
 }

@@ -1,6 +1,7 @@
 package ru.itis.antonov.cms.config;
 
 import org.springframework.context.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -30,6 +31,15 @@ public class ApplicationConfig implements WebMvcConfigurer {
         resolver.setContentType("text/html;charset=UTF-8");
         return resolver;
     }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(100000);
+        return multipartResolver;
+    }
+
+
 
     @Bean
     public FreeMarkerConfigurer freemarkerConfig() {

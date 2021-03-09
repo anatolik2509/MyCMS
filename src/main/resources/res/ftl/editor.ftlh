@@ -11,7 +11,8 @@
     <@bootstrap.import/>
     <script src="<@spring.url "/static/js/editorInit.js"/>"></script>
     <script>
-        url = <@spring.url "/editor"/>;
+        url = "<@spring.url "/editor"/>";
+        context = "${springMacroRequestContext.contextPath}";
     </script>
 </head>
 <body>
